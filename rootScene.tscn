@@ -1,0 +1,191 @@
+[gd_scene load_steps=11 format=3 uid="uid://1auxay85yblg"]
+
+[ext_resource type="Script" uid="uid://bf3u6j7ywxfek" path="res://processIMG.gd" id="1_s87u8"]
+[ext_resource type="Texture2D" uid="uid://21s36ff6q6tm" path="res://UI/pal1-lightest.png" id="2_qe1oo"]
+[ext_resource type="Texture2D" uid="uid://5umwbogvfen2" path="res://UI/pal2.png" id="3_laywa"]
+[ext_resource type="Texture2D" uid="uid://bk6p8rs7axq0" path="res://UI/pal3.png" id="4_tq7v1"]
+[ext_resource type="Texture2D" uid="uid://derok7gdntoxu" path="res://UI/pal4.png" id="5_on5a3"]
+[ext_resource type="Texture2D" uid="uid://djgk7c2jga5ls" path="res://UI/pal5.png" id="6_d7eyq"]
+[ext_resource type="Texture2D" uid="uid://ko6bv38lgy2t" path="res://UI/pal6.png" id="7_pcupu"]
+[ext_resource type="Texture2D" uid="uid://dcl8vp7ui5v8e" path="res://UI/pal7.png" id="8_s4ic7"]
+[ext_resource type="Texture2D" uid="uid://bpdieyo8fvhw1" path="res://UI/pal8.png" id="9_edk3o"]
+[ext_resource type="Texture2D" uid="uid://ckdjpcgxpeixh" path="res://UI/pal9.png" id="10_u8f6x"]
+
+[node name="SceneRootNode_Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UploadPalButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 2.0
+offset_right = 763.0
+offset_bottom = 78.0
+text = "Upload Palette (FIRST)"
+
+[node name="Button" type="Button" parent="." node_paths=PackedStringArray("openDialogue", "palDialogue", "placeholderTexRect", "paletteIMGContainer", "respritedIMGContainer")]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 81.0
+offset_right = 763.0
+offset_bottom = 155.0
+text = "Upload IMG to recol (SECOND)"
+script = ExtResource("1_s87u8")
+openDialogue = NodePath("../FileDialog")
+palDialogue = NodePath("../FileDialogForPal")
+placeholderTexRect = NodePath("../TextureRect")
+paletteIMGContainer = NodePath("../paletteScrollContainer/VBoxContainer")
+respritedIMGContainer = NodePath("../processedImagesScrollContainer/VBoxContainer")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+position = Vector2i(0, 36)
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png", "*.webp")
+show_hidden_files = true
+
+[node name="FileDialogForPal" type="FileDialog" parent="."]
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png", "*.webp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -143.0
+offset_right = 20.0
+offset_bottom = -103.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="processedImagesScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.469
+anchor_bottom = 0.469
+offset_left = 394.0
+offset_top = -99.912
+offset_right = 1148.0
+offset_bottom = 244.088
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="processedImagesScrollContainer"]
+custom_minimum_size = Vector2(700, 300)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TopFAKEcontainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -608.0
+offset_right = 380.0
+offset_bottom = -560.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopFAKEcontainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopFAKEcontainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 37.64)
+layout_mode = 2
+alignment = 1
+
+[node name="FromPalTextureRect2" type="TextureRect" parent="TopFAKEcontainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_qe1oo")
+expand_mode = 2
+
+[node name="FromPalTextureRect3" type="TextureRect" parent="TopFAKEcontainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_laywa")
+expand_mode = 2
+
+[node name="FromPalTextureRect4" type="TextureRect" parent="TopFAKEcontainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_tq7v1")
+expand_mode = 2
+
+[node name="FromPalTextureRect5" type="TextureRect" parent="TopFAKEcontainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_on5a3")
+expand_mode = 2
+
+[node name="FromPalTextureRect6" type="TextureRect" parent="TopFAKEcontainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_d7eyq")
+expand_mode = 2
+
+[node name="FromPalTextureRect7" type="TextureRect" parent="TopFAKEcontainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_pcupu")
+expand_mode = 2
+
+[node name="FromPalTextureRect8" type="TextureRect" parent="TopFAKEcontainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_s4ic7")
+expand_mode = 2
+
+[node name="FromPalTextureRect9" type="TextureRect" parent="TopFAKEcontainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_edk3o")
+expand_mode = 2
+
+[node name="FromPalTextureRect10" type="TextureRect" parent="TopFAKEcontainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_u8f6x")
+expand_mode = 2
+
+[node name="paletteScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -521.0
+offset_right = 380.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="paletteScrollContainer"]
+layout_mode = 2
+
+[node name="from_RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 378.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[center][rainbow][wave]From:"
+vertical_alignment = 1
+
+[node name="from_RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 83.0
+offset_right = 378.0
+offset_bottom = 123.0
+bbcode_enabled = true
+text = "[center][rainbow][tornado]To:"
+vertical_alignment = 1
+
+[connection signal="button_down" from="UploadPalButton" to="Button" method="_on_upload_pal_button_button_down"]
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
+[connection signal="file_selected" from="FileDialog" to="Button" method="_on_file_dialog_file_selected"]
+[connection signal="file_selected" from="FileDialogForPal" to="Button" method="_on_file_dialog_for_pal_file_selected"]

@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://0nkdgpbwwlux"]
+
+[ext_resource type="Texture2D" uid="uid://bcp8mrs8y20fc" path="res://UI/black.png" id="1_roi4n"]
+
+[node name="palImport_HBoxContainer" type="HBoxContainer"]
+custom_minimum_size = Vector2(80, 37.64)
+alignment = 1
+
+[node name="FromPalTextureRect2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_roi4n")
+expand_mode = 2
+
+[node name="FromPalTextureRect3" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_roi4n")
+expand_mode = 2
+
+[node name="FromPalTextureRect4" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_roi4n")
+expand_mode = 2
+
+[node name="FromPalTextureRect5" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_roi4n")
+expand_mode = 2
+
+[node name="FromPalTextureRect6" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_roi4n")
+expand_mode = 2
+
+[node name="FromPalTextureRect7" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_roi4n")
+expand_mode = 2
+
+[node name="FromPalTextureRect8" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_roi4n")
+expand_mode = 2
+
+[node name="FromPalTextureRect9" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_roi4n")
+expand_mode = 2
+
+[node name="FromPalTextureRect10" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_roi4n")
+expand_mode = 2
