@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://1auxay85yblg"]
+[gd_scene load_steps=12 format=3 uid="uid://1auxay85yblg"]
 
 [ext_resource type="Script" uid="uid://bf3u6j7ywxfek" path="res://processIMG.gd" id="1_s87u8"]
 [ext_resource type="Texture2D" uid="uid://21s36ff6q6tm" path="res://UI/pal1-lightest.png" id="2_qe1oo"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dcl8vp7ui5v8e" path="res://UI/pal7.png" id="8_s4ic7"]
 [ext_resource type="Texture2D" uid="uid://bpdieyo8fvhw1" path="res://UI/pal8.png" id="9_edk3o"]
 [ext_resource type="Texture2D" uid="uid://ckdjpcgxpeixh" path="res://UI/pal9.png" id="10_u8f6x"]
+[ext_resource type="Texture2D" uid="uid://coag88fhetxol" path="res://UI/refresh.png" id="11_laywa"]
 
 [node name="SceneRootNode_Control" type="Control"]
 layout_mode = 3
@@ -29,7 +30,7 @@ offset_right = 763.0
 offset_bottom = 78.0
 text = "Upload Palette (FIRST)"
 
-[node name="Button" type="Button" parent="." node_paths=PackedStringArray("openDialogue", "palDialogue", "placeholderTexRect", "paletteIMGContainer", "respritedIMGContainer")]
+[node name="Button" type="Button" parent="." node_paths=PackedStringArray("openDialogue", "palDialogue", "placeholderTexRect", "paletteIMGContainer", "respritedIMGContainer", "newTextLabel")]
 layout_mode = 0
 offset_left = 391.0
 offset_top = 81.0
@@ -42,6 +43,7 @@ palDialogue = NodePath("../FileDialogForPal")
 placeholderTexRect = NodePath("../TextureRect")
 paletteIMGContainer = NodePath("../paletteScrollContainer/VBoxContainer")
 respritedIMGContainer = NodePath("../processedImagesScrollContainer/VBoxContainer")
+newTextLabel = NodePath("../processedImagesScrollContainer/VBoxContainer/RichTextLabel")
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"
@@ -90,6 +92,11 @@ custom_minimum_size = Vector2(700, 300)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="processedImagesScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "skibidi skobidi ur computer is now my property"
+fit_content = true
 
 [node name="TopFAKEcontainer" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -185,7 +192,21 @@ bbcode_enabled = true
 text = "[center][rainbow][tornado]To:"
 vertical_alignment = 1
 
+[node name="RestartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -75.0
+offset_top = 12.0
+offset_right = 445.0
+offset_bottom = 532.0
+grow_horizontal = 0
+scale = Vector2(0.12, 0.12)
+icon = ExtResource("11_laywa")
+
 [connection signal="button_down" from="UploadPalButton" to="Button" method="_on_upload_pal_button_button_down"]
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
 [connection signal="file_selected" from="FileDialog" to="Button" method="_on_file_dialog_file_selected"]
 [connection signal="file_selected" from="FileDialogForPal" to="Button" method="_on_file_dialog_for_pal_file_selected"]
+[connection signal="button_down" from="RestartButton" to="Button" method="_on_restart_button_button_down"]

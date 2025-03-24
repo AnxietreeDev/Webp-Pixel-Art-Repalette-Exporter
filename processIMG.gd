@@ -44,12 +44,25 @@ var called : int = 0
 var recolTargArray: Array[String] = []
 var imgName: String = ""
 
+@export var newTextLabel : RichTextLabel
+
+func _ready():
+	createExportFolderIfNone()
+	openDialogue.current_path = folderPathString + "Repal_Exports"
+	palDialogue.current_path = folderPathString + "Repal_Exports"
+
+
+
 func createExportFolderIfNone():
 	if not DirAccess.dir_exists_absolute(folderPathString + "/Repal_Exports"):
 		DirAccess.make_dir_absolute(folderPathString + "/Repal_Exports")
 	else:
 		folderPathString = folderPathString + "/Repal_Exports"
 	pass
+	
+func createRespritedObjFolderIfNone(objName: String):
+	if not DirAccess.dir_exists_absolute(folderPathString + "/" + objName):
+		DirAccess.make_dir_absolute(folderPathString + "/" + objName)
 
 func _on_button_down():
 	if(repalColorArray != []): openDialogue.popup_centered_ratio()
@@ -88,6 +101,12 @@ func _on_file_dialog_file_selected(path):
 			if(currentSegDepth == 9): recolTarget9 = repalColorArray[i][a]
 		currentSegDepth = 0
 		redrawPixels()
+		
+		newTextLabel.fit_content = true
+		newTextLabel.text = "Row " + str(i + 1) + " of " + str(repalColorArray.size()) + " complete"
+		if(i+1 == repalColorArray.size()): newTextLabel.text += " All done! Check your images"
+		await get_tree().create_timer(0.1).timeout
+		
 
 
 func _on_file_dialog_for_pal_file_selected(path):
@@ -330,19 +349,28 @@ func redrawPixels():
 	var img = Image.create_from_data(loadedImage.data.width, 
 	loadedImage.data.height, false, Image.FORMAT_RGBA8, repackedArray)
 	
-	var newTexNode = TextureRect.new()
-	newTexNode.texture = ImageTexture.create_from_image(img)
-	newTexNode.expand_mode = TextureRect.EXPAND_KEEP_SIZE
-	newTexNode.stretch_mode = TextureRect.STRETCH_KEEP
-	respritedIMGContainer.add_child(newTexNode)
+	#var newTexNode = TextureRect.new()
+	#newTexNode.texture = ImageTexture.create_from_image(img)
+	#newTexNode.expand_mode = TextureRect.EXPAND_KEEP_SIZE
+	#newTexNode.stretch_mode = TextureRect.STRETCH_KEEP
+	
+	##SWAP this with a simple Row complete subscene and wait 1 second
+	#respritedIMGContainer.add_child(newTexNode)
 
 	currentImgExportNum += 1
 
 	var fileNameThenExtensionArray = imgName.split(".", true)
 	var imgNameWithoutExtension = fileNameThenExtensionArray[0]
-
+	
+	createRespritedObjFolderIfNone(imgNameWithoutExtension)
+	
 	var filename: String = imgNameWithoutExtension + str(currentImgExportNum) + ".webp"
-	var result_webp = img.save_webp(folderPathString +"/"+ filename,false)
+
+	var result_webp = img.save_webp(folderPathString +"/" + imgNameWithoutExtension + "/"+ filename,false)
 
 	#if( result_webp == OK): print("image ", filename, " exported OK at: ", folderPathString )
 	#else: print("export failed")
+
+
+func _on_restart_button_button_down():
+	get_tree().reload_current_scene()
